@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agaval Bakery | Order</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="nav">
+      <a class="brand" href="index.html">Agaval</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a class="active" href="order.html">Order</a>
+        <a href="cart.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
+      </nav>
+    </header>
+
+    <main class="container page" style="max-width:720px;">
+      <h1 class="center-text" style="color:gold;">Place Your Order</h1>
+
+      <form action="send_order.php" method="POST" class="order-form">
+        <label>Full Name</label>
+        <input name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Delivery Address</label>
+        <textarea name="address" required></textarea>
+
+        <label>Order Items</label>
+        <textarea id="order-items" name="items" placeholder="Your cart items will be filled here" required></textarea>
+
+        <label>Special Instructions</label>
+        <textarea name="instructions"></textarea>
+
+        <button class="btn" type="submit">Submit Order</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
