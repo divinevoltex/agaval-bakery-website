@@ -254,3 +254,15 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
+
+document.querySelectorAll('.about-box').forEach((box, i) => {
+  box.style.opacity = 0;
+  box.style.transform = "translateY(30px)";
+
+  setTimeout(() => {
+    box.style.transition = "0.8s ease";
+    box.style.opacity = 1;
+    box.style.transform = "translateY(0)";
+  }, i * 200);
+});
