@@ -146,3 +146,54 @@ body.home.scrolled .site-nav {
   z-index: 0;
   pointer-events: none;
   }
+
+/* ABOUT PAGE */
+.about-container {
+  padding: 6rem 1.5rem 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 3rem;
+  color: #d4af37;
+  margin-bottom: 3rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+/* Luxury Info Box */
+.about-box {
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  border-radius: 16px;
+  padding: 2rem;
+  color: #eee;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.about-box h2 {
+  color: #d4af37;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.about-box ul {
+  padding-left: 1.2rem;
+}
+
+.about-box li {
+  margin-bottom: 0.5rem;
+}
