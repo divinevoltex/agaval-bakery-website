@@ -212,3 +212,45 @@ window.addEventListener("scroll", () => {
     document.body.classList.remove("scrolled");
   }
 });
+
+const canvas = document.getElementById("fireflies");
+const ctx = canvas.getContext("2d");
+
+let w, h, flies = [];
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+for (let i = 0; i < 60; i++) {
+  flies.push({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = "rgba(212,175,55,0.8)";
+
+  flies.forEach(f => {
+    ctx.beginPath();
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    f.x += f.dx;
+    f.y += f.dy;
+
+    if (f.x < 0 || f.x > w) f.dx *= -1;
+    if (f.y < 0 || f.y > h) f.dy *= -1;
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
