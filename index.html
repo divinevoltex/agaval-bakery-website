@@ -6,24 +6,32 @@
   <title>Agaval Bakery | Home</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <!-- Navbar -->
-  <header class="navbar">
+
+<body class="home">
+
+  <!-- 🔥 Firefly Canvas (BACKGROUND) -->
+  <canvas id="fireflies"></canvas>
+
+  <!-- ✅ Navbar -->
   <header class="nav site-nav">
-  <a class="brand" href="index.html">Agaval</a>
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="about.html">About</a>
-    <a href="order.html">Order</a>
-    <a href="cart.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
-  </nav>
+    <a class="brand" href="index.html">Agaval</a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="order.html">Order</a>
+      <a href="cart.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
+    </nav>
   </header>
-  <!-- Hero Video -->
+
+  <!-- ✅ Hero Section -->
   <section class="hero">
-    <video autoplay muted loop poster="assets/hero-poster.jpg" id="hero-video">
+    <video autoplay muted loop playsinline class="hero-video">
       <source src="assets/hero.mp4" type="video/mp4">
     </video>
+
+    <div class="hero-overlay"></div>
+
     <div class="hero-text">
       <h1>Welcome to Agaval Bakery</h1>
       <p>Freshly baked. International taste. Indian heart.</p>
@@ -31,15 +39,17 @@
     </div>
   </section>
 
-  <!-- Specials -->
-  <section class="specials">
+  <!-- ✅ Specials -->
+  <section class="specials container">
     <h2>Today's Specials</h2>
+
     <div class="cards">
       <div class="card">
         <img src="assets/images/croissant.jpg" alt="Croissant">
         <h3>Butter Croissant</h3>
         <p>Flaky & golden, straight from our oven.</p>
       </div>
+
       <div class="card">
         <img src="assets/images/cake.jpg" alt="Cake">
         <h3>Chocolate Truffle</h3>
@@ -48,8 +58,8 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
+  <!-- ✅ Footer -->
+  <footer class="site-footer">
     <p>© 2025 Agaval Bakery · Crafted with love in India · International Quality</p>
   </footer>
 
