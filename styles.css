@@ -102,3 +102,47 @@ body.home.scrolled .site-nav {
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
 }
+
+.site-footer {
+  background: #000;
+  color: #d4af37;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 4rem;
+}.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+
+.hero-text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding-top: 80px; /* navbar space */
+  }#fireflies {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  }
