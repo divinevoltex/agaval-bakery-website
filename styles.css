@@ -74,3 +74,31 @@ input,textarea,select{width:100%;padding:.7rem;border-radius:8px;border:1px soli
 /* helpers */
 .center-text{ text-align:center; }
 .muted{ color:var(--muted); }
+
+
+/* Base navbar */
+.site-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 3rem;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Default (other pages) */
+body:not(.home) .site-nav {
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+}
+
+/* Home page navbar (over hero video) */
+body.home .site-nav {
+  background: transparent;
+}
+
+/* On scroll (home page) */
+body.home.scrolled .site-nav {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
