@@ -567,3 +567,12 @@ input, textarea {
 .home {
   padding-top: 0;
    }
+
+
+.about {
+  min-height: auto;
+}
+
+.about-section {
+  margin-bottom: 2rem;
+}
