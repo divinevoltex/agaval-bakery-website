@@ -1,3 +1,18 @@
+/* ===============================
+   AGAVAL BAKERY - GLOBAL STYLES
+================================ */
+
+:root {
+  --bg: #0b0b0c;
+  --panel: rgba(255,255,255,0.05);
+  --gold: #d4af37;
+  --muted: #b8b8b8;
+  --white: #ffffff;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.6);
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
 /* RESET */
 * {
   margin: 0;
@@ -5,67 +20,320 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #000;
-  color: #fff;
+html, body {
+  background: var(--bg);
+  color: var(--white);
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
-/* NAVBAR (GLOBAL SAFE) */
+/* ===============================
+   FIRELIES CANVAS
+================================ */
+#fireflies {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===============================
+   NAVBAR
+================================ */
 .site-nav {
   position: fixed;
   top: 0;
   width: 100%;
   height: 70px;
   background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 24px;
   z-index: 1000;
+  box-shadow: var(--shadow);
 }
 
 .brand {
+  color: var(--gold);
   font-size: 1.6rem;
-  color: gold;
+  font-weight: 700;
   text-decoration: none;
-  font-weight: bold;
 }
 
 .nav-links a {
-  margin-left: 15px;
+  color: var(--white);
+  margin-left: 18px;
   text-decoration: none;
-  color: #fff;
-  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
 }
 
-.nav-links a.active {
-  color: gold;
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--gold);
 }
 
-/* PAGE SPACING FIX */
-.menu-page {
-  padding-top: 80px;
+/* ===============================
+   PAGE BASE
+================================ */
+.page {
+  padding-top: 90px;
+  position: relative;
+  z-index: 2;
 }
 
-/* MENU HERO */
-.menu-page .menu-hero {
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.center-text {
   text-align: center;
-  padding: 40px 20px;
-  background: radial-gradient(circle at top, #1a1a1a, #000);
 }
 
-.menu-page .menu-hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+.muted {
+  color: var(--muted);
 }
 
-.menu-page .menu-hero p {
-  color: #aaa;
-  font-size: 1rem;
+/* ===============================
+   HERO (HOME + ABOUT)
+================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* MENU GRID */
+.small-hero {
+  height: 60vh;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+  z-index: -2;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+  z-index: -1;
+}
+
+.hero-text,
+.hero-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 520px;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn {
+  background: linear-gradient(90deg, var(--gold), #b7922a);
+  color: #1a1200;
+  padding: 0.6rem 1.3rem;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(212,175,55,0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+}
+
+.btn.small {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+/* ===============================
+   MENU PAGE
+================================ */
+.menu-hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.menu-hero h1 {
+  font-size: 2.6rem;
+  color: var(--gold);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 1.5rem;
+}
+
+.menu-card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.menu-card h3 {
+  padding: 0.8rem 1rem 0;
+}
+
+.menu-card .price {
+  padding: 0.5rem 1rem 1rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ===============================
+   ABOUT PAGE
+================================ */
+.about-container {
+  padding-top: 100px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.8rem;
+  color: var(--gold);
+  margin-bottom: 3rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 2rem;
+}
+
+.about-box {
+  background: rgba(0,0,0,0.75);
+  border: 1px solid rgba(212,175,55,0.5);
+  border-radius: var(--radius);
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(212,175,55,0.2);
+}
+
+.about-box h2 {
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+/* ===============================
+   CART PAGE
+================================ */
+.cart-items {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cart-item {
+  background: var(--panel);
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===============================
+   ORDER PAGE
+================================ */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input, textarea {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius);
+  padding: 0.7rem;
+  color: var(--white);
+  resize: none;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
+  background: #000;
+  color: var(--gold);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 720px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .nav-links a {
+    margin-left: 10px;
+    font-size: 0.9rem;
+  }
+  }/* MENU GRID */
 .menu-page .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
