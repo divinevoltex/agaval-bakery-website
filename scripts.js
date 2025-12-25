@@ -1,68 +1,163 @@
-/* scripts.js
-   - Sparkles background
-   - GSAP animations (nav, hero, cards)
-   - Cart (localStorage) + UI wiring
-   - Fills order textarea with cart contents
-*/
+/* ===============================
+   AGAVAL BAKERY - MAIN SCRIPT
+================================ */
 
-(function () {
-  // Helpers
-  const STORAGE_KEY = 'agaval_cart';
+(() => {
+  const STORAGE_KEY = "agaval_cart";
 
-  function readCart() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    } catch (e) {
-      return [];
-    }
-  }
-  function saveCart(cart) {
+  /* ---------- CART ---------- */
+  const readCart = () => JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  const saveCart = (cart) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
     updateCartCount();
-  }
+  };
+
   function updateCartCount() {
-    const cart = readCart();
-    const count = cart.reduce((s, i) => s + (i.qty || 0), 0);
-    document.querySelectorAll('#cart-count').forEach(el => el.textContent = count);
+    const count = readCart().reduce((s, i) => s + i.qty, 0);
+    document.querySelectorAll("#cart-count").forEach(e => e.textContent = count);
   }
 
-  // Sparkles
-  function createSparkles(num = 30) {
-    for (let i = 0; i < num; i++) {
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.style.left = Math.random() * 100 + 'vw';
-      s.style.top = Math.random() * 100 + 'vh';
-      s.style.width = (6 + Math.random() * 8) + 'px';
-      s.style.height = s.style.width;
-      s.style.opacity = 0.5 + Math.random() * 0.6;
-      s.style.animationDuration = (3 + Math.random() * 5) + 's';
-      // put into body but keep behind content by low z-index (styles.css sets z-index:0)
-      document.body.appendChild(s);
-    }
-  }
-
-  // Add item to cart
   function addToCart(name, price) {
     const cart = readCart();
-    const idx = cart.findIndex(i => i.name === name);
-    if (idx >= 0) cart[idx].qty++;
-    else cart.push({ name, price: Number(price), qty: 1 });
+    const item = cart.find(i => i.name === name);
+    item ? item.qty++ : cart.push({ name, price, qty: 1 });
     saveCart(cart);
-    return cart;
   }
 
-  // Render cart page
-  function renderCartPage() {
-    const el = document.getElementById('cart-items');
-    if (!el) return;
+  /* ---------- CART PAGE ---------- */
+  function renderCart() {
+    const wrap = document.getElementById("cart-items");
+    if (!wrap) return;
+
     const cart = readCart();
-    if (cart.length === 0) {
-      el.innerHTML = '<p class="muted">Your cart is empty — add some treats!</p>';
-      document.getElementById('cart-total').textContent = '0';
+    if (!cart.length) {
+      wrap.innerHTML = `<p class="muted">Your cart is empty.</p>`;
+      document.getElementById("cart-total").textContent = "0";
       return;
     }
+
     let total = 0;
+    wrap.innerHTML = cart.map((i, idx) => {
+      total += i.price * i.qty;
+      return `
+        <div class="cart-item">
+          <div>
+            <strong>${i.name}</strong>
+            <div class="muted">₹${i.price} × ${i.qty}</div>
+          </div>
+          <div class="controls">
+            <button class="btn small inc" data-i="${idx}">+</button>
+            <button class="btn small dec" data-i="${idx}">−</button>
+          </div>
+        </div>`;
+    }).join("");
+
+    document.getElementById("cart-total").textContent = total;
+
+    wrap.querySelectorAll(".inc").forEach(b => {
+      b.onclick = () => {
+        const c = readCart();
+        c[b.dataset.i].qty++;
+        saveCart(c);
+        renderCart();
+      };
+    });
+
+    wrap.querySelectorAll(".dec").forEach(b => {
+      b.onclick = () => {
+        const c = readCart();
+        c[b.dataset.i].qty > 1 ? c[b.dataset.i].qty-- : c.splice(b.dataset.i, 1);
+        saveCart(c);
+        renderCart();
+      };
+    });
+  }
+
+  /* ---------- ORDER PAGE ---------- */
+  function fillOrder() {
+    const ta = document.getElementById("order-items");
+    if (!ta) return;
+    ta.value = readCart().map(i => `${i.qty} × ${i.name}`).join("\n") || "No items";
+  }
+
+  /* ---------- ADD TO CART BUTTONS ---------- */
+  function wireButtons() {
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      if (btn.dataset.wired) return;
+      btn.dataset.wired = "1";
+      btn.onclick = () => {
+        addToCart(btn.dataset.name, +btn.dataset.price);
+        btn.textContent = "Added ✓";
+        setTimeout(() => btn.textContent = "Add to Cart", 900);
+      };
+    });
+  }
+
+  /* ---------- GSAP ---------- */
+  function initGSAP() {
+    if (!window.gsap) return;
+
+    gsap.from(".site-nav", { y: -40, opacity: 0, duration: 0.8 });
+
+    gsap.utils.toArray(".menu-card, .about-box").forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: el,
+        y: 40,
+        opacity: 0,
+        duration: 0.8
+      });
+    });
+  }
+
+  /* ---------- FIRELIES ---------- */
+  function fireflies() {
+    const canvas = document.getElementById("fireflies");
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    const flies = Array.from({ length: 50 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      r: Math.random() * 2 + 1,
+      dx: Math.random() * 0.001,
+      dy: Math.random() * 0.001
+    }));
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(212,175,55,0.8)";
+      flies.forEach(f => {
+        ctx.beginPath();
+        ctx.arc(f.x * w, f.y * h, f.r, 0, Math.PI * 2);
+        ctx.fill();
+        f.x += f.dx;
+        f.y += f.dy;
+        if (f.x > 1 || f.x < 0) f.dx *= -1;
+        if (f.y > 1 || f.y < 0) f.dy *= -1;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  /* ---------- INIT ---------- */
+  document.addEventListener("DOMContentLoaded", () => {
+    updateCartCount();
+    renderCart();
+    fillOrder();
+    wireButtons();
+    fireflies();
+    initGSAP();
+  });
+})();    let total = 0;
     const html = cart.map((it, i) => {
       total += it.price * it.qty;
       return `<div class="cart-item">
