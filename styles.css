@@ -1,71 +1,245 @@
 /* ===============================
-   AGAVAL BAKERY - GLOBAL STYLES
+   AGAVAL BAKERY - FINAL CSS
 ================================ */
 
 :root {
-  --bg: #0b0b0c;
-  --panel: rgba(255,255,255,0.05);
-  --gold: #d4af37;
-  --muted: #b8b8b8;
-  --white: #ffffff;
-  --radius: 14px;
-  --shadow: 0 10px 30px rgba(0,0,0,0.6);
-  font-family: "Poppins", system-ui, sans-serif;
+  --bg:#0b0b0c;
+  --gold:#d4af37;
+  --muted:#b8b8b8;
+  --white:#fff;
+  --panel:rgba(255,255,255,0.05);
+  --radius:14px;
+  --shadow:0 10px 30px rgba(0,0,0,0.6);
+  font-family:Poppins,system-ui,sans-serif;
 }
 
 /* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--white);min-height:100%}
 
-html, body {
-  background: var(--bg);
-  color: var(--white);
-  min-height: 100%;
-  scroll-behavior: smooth;
-}
-
-/* ===============================
-   FIRELIES CANVAS
-================================ */
-#fireflies {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+/* FIRELIES */
+#fireflies{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
 }
 
 /* ===============================
    NAVBAR
 ================================ */
-.site-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 70px;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  z-index: 1000;
-  box-shadow: var(--shadow);
+.site-nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:70px;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(8px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 24px;
+  z-index:1000;
 }
 
-.brand {
-  color: var(--gold);
-  font-size: 1.6rem;
-  font-weight: 700;
-  text-decoration: none;
+.brand{
+  color:var(--gold);
+  font-size:1.6rem;
+  text-decoration:none;
+  font-weight:700;
 }
 
-.nav-links a {
-  color: var(--white);
-  margin-left: 18px;
-  text-decoration: none;
+.nav-links a{
+  color:#fff;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--gold);
+}
+
+/* ===============================
+   PAGE BASE
+================================ */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:2rem 1.5rem;
+  position:relative;
+  z-index:2;
+}
+
+.page{
+  padding-top:90px; /* FIX FOR MENU / ORDER / CART */
+}
+
+/* ===============================
+   HERO (HOME)
+================================ */
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(0.45);
+  z-index:-2;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.3),rgba(0,0,0,.9));
+  z-index:-1;
+}
+
+.hero-text{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:70px; /* NAV SPACE */
+}
+
+.hero h1{
+  font-size:3rem;
+  color:var(--gold);
+  margin-bottom:.8rem;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:520px;
+  margin-bottom:1.2rem;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn{
+  background:linear-gradient(90deg,var(--gold),#b7922a);
+  color:#1a1200;
+  padding:.6rem 1.4rem;
+  border-radius:30px;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 18px rgba(212,175,55,.4);
+}
+
+/* ===============================
+   CARDS
+================================ */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+  margin-top:2rem;
+}
+
+.card{
+  background:var(--panel);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.3s;
+}
+
+.card:hover{transform:translateY(-8px)}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card h3{padding:.8rem 1rem}
+.card p{padding:0 1rem 1rem;color:var(--muted)}
+
+/* ===============================
+   EXPERIENCE SECTION
+================================ */
+.experience-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  align-items:center;
+}
+
+.experience-image img{
+  width:100%;
+  border-radius:var(--radius);
+}
+
+.experience-content h2{
+  color:var(--gold);
+  margin-bottom:.6rem;
+}
+
+.experience-points{
+  margin:1rem 0;
+}
+
+.experience-points li{
+  margin-bottom:.5rem;
+  list-style:none;
+}
+
+/* ===============================
+   ABOUT PAGE FIX
+================================ */
+.about-container{
+  padding-top:110px;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+.about-box{
+  background:rgba(0,0,0,.75);
+  border:1px solid rgba(212,175,55,.4);
+  border-radius:var(--radius);
+  padding:2rem;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.site-footer{
+  text-align:center;
+  padding:2rem;
+  background:#000;
+  color:var(--gold);
+  margin-top:4rem;
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  .experience-grid{grid-template-columns:1fr}
+  .nav-links a{margin-left:10px;font-size:.9rem}
+}  text-decoration: none;
   font-weight: 500;
   position: relative;
 }
