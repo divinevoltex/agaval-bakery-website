@@ -2,65 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agaval Bakery | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="home">
 
-  <!-- 🔥 Firefly Canvas (BACKGROUND) -->
-  <canvas id="fireflies"></canvas>
+<canvas id="fireflies"></canvas>
 
-  <!-- ✅ Navbar -->
-  <header class="nav site-nav">
-    <a class="brand" href="index.html">Agaval</a>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="about.html">About</a>
-      <a href="order.html">Order</a>
-      <a href="cart.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
-    </nav>
-  </header>
+<header class="nav site-nav">
+  <a class="brand" href="index.html">Agaval</a>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About</a>
+    <a href="order.html">Order</a>
+    <a href="cart.html">🛒 <span id="cart-count">0</span></a>
+  </nav>
+</header>
 
-  <!-- ✅ Hero Section -->
-  <section class="hero">
-    <video autoplay muted loop playsinline class="hero-video">
-      <source src="asset/Hero.mp4" type="video/mp4">
-    </video>
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="asset/Hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <h1>Welcome to Agaval Bakery</h1>
+    <p>Freshly baked. International taste. Indian heart.</p>
+    <a href="menu.html" class="btn">Explore Menu</a>
+  </div>
+</section>
 
-    <div class="hero-text">
-      <h1>Welcome to Agaval Bakery</h1>
-      <p>Freshly baked. International taste. Indian heart.</p>
-      <a href="menu.html" class="btn-gold">Explore Menu</a>
+<!-- SPECIALS -->
+<section class="specials container reveal">
+  <h2 class="center-text">Today's Specials</h2>
+
+  <div class="cards">
+    <div class="card">
+      <img src="asset/Butter.jpg">
+      <h3>Butter Croissant</h3>
+      <p>Flaky & golden, straight from our oven.</p>
     </div>
-  </section>
 
-  <!-- ✅ Specials -->
-  <section class="specials container">
-    <h2>Today's Specials</h2>
-
-    <div class="cards">
-      <div class="card">
-        <img src="asset/Butter.jpg" alt="Croissant">
-        <h3>Butter Croissant</h3>
-        <p>Flaky & golden, straight from our oven.</p>
-      </div>
-
-      <div class="card">
-        <img src="assets/images/cake.jpg" alt="Cake">
-        <h3>Chocolate Truffle</h3>
-        <p>Rich, decadent & perfect for celebrations.</p>
-      </div>
+    <div class="card">
+      <img src="asset/cake.jpg">
+      <h3>Chocolate Truffle</h3>
+      <p>Rich, decadent & perfect for celebrations.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ✅ Footer -->
-  <footer class="site-footer">
-    <p>© 2025 Agaval Bakery · Crafted with love in India · International Quality</p>
-  </footer>
+<!-- EXPERIENCE SECTION -->
+<section class="experience container">
+  <div class="experience-grid">
 
-  <script src="script.js"></script>
+    <div class="experience-image reveal">
+      <img src="asset/bakery-interior.jpg" alt="Agaval Bakery Interior">
+    </div>
+
+    <div class="experience-content reveal">
+      <h2>Step Into Royal Elegance</h2>
+      <p>
+        Inspired by European pâtisseries, Agaval Bakery blends timeless luxury
+        with modern warmth. Every detail is designed to delight your senses.
+      </p>
+
+      <ul class="experience-points">
+        <li>✨ Royal European interiors</li>
+        <li>🥐 Fresh artisan bakery</li>
+        <li>☕ Calm café experience</li>
+      </ul>
+
+      <a href="about.html" class="btn">Discover Our Story</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  © 2025 Agaval Bakery · Crafted with love in India
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
