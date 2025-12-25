@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agaval Bakery | Order Unavailable</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== Order Unavailable Page Styles ===== */
+    body.unavailable {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff8f0, #fdf0e0);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .unavailable-container {
+      text-align: center;
+      padding: 20px;
+      max-width: 600px;
+      background: rgba(255, 248, 240, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .unavailable-container h1 {
+      font-size: 2.5rem;
+      color: #d4af37; /* golden accent */
+      margin-bottom: 20px;
+    }
+
+    .unavailable-container p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .unavailable-container .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #d4af37;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .unavailable-container .btn:hover {
+      background-color: #b8912f;
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Optional: small sparkle effect */
+    .sparkle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.6);
+      width: 6px;
+      height: 6px;
+      animation: sparkleAnim 2s infinite;
+    }
+
+    @keyframes sparkleAnim {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+  </style>
+</head>
+<body class="unavailable">
+
+  <div class="unavailable-container">
+    <h1>😔 Sorry!</h1>
+    <p>Unfortunately, the order you tried to place is not available at the moment.</p>
+    <a href="menu.html" class="btn">Browse Menu</a>
+  </div>
+
+  <script>
+    // Small sparkles effect
+    for(let i=0;i<20;i++){
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = Math.random()*100+'vw';
+      s.style.top = Math.random()*100+'vh';
+      s.style.width = (4+Math.random()*6)+'px';
+      s.style.height = s.style.width;
+      s.style.animationDuration = (1+Math.random()*2)+'s';
+      document.body.appendChild(s);
+    }
+  </script>
+</body>
+</html>
