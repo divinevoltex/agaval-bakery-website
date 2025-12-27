@@ -8,38 +8,40 @@
 </head>
 <body>
   <header class="nav site-nav">
-  <a class="brand" href="index.html">Agaval</a>
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="about.html">About</a>
-    <a href="order.html">Order</a>
-    <a href="cart.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
-  </nav>
+    <a class="brand" href="index.html">Agaval</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="order.html">Order</a>
+      <a href="cart.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
+    </nav>
   </header>
 
-    <main class="container page" style="max-width:720px;">
-      <h1 class="center-text" style="color:gold;">Place Your Order</h1>
+  <main class="container page" style="max-width:720px;">
+    <h1 class="center-text" style="color:gold;">Place Your Order</h1>
 
-      <form action="send_order.php" method="POST" class="order-form">
-        <label>Full Name</label>
-        <input name="name" required>
+    <form action="https://formspree.io/f/xregpqgd" method="POST" class="order-form" id="bakery-order-form">
+      <label>Full Name</label>
+      <input name="name" type="text" required>
 
-        <label>Email</label>
-        <input type="email" name="email" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
 
-        <label>Delivery Address</label>
-        <textarea name="address" required></textarea>
+      <label>Delivery Address</label>
+      <textarea name="address" required></textarea>
 
-        <label>Order Items</label>
-        <textarea id="order-items" name="items" placeholder="Your cart items will be filled here" required></textarea>
+      <label>Order Items</label>
+      <textarea id="order-items" name="items" placeholder="Your cart items will be filled here" required readonly></textarea>
 
-        <label>Special Instructions</label>
-        <textarea name="instructions"></textarea>
-        <a href="Sorry.html" class="btn">submit order</a>
-      </form>
-    </main>
-  </div>
+      <label>Special Instructions</label>
+      <textarea name="instructions"></textarea>
+      
+      <input type="hidden" name="_next" value="https://agavalbakery.vercel.app.com/Sorry.html">
+      
+      <button type="submit" class="btn">submit order</button>
+    </form>
+  </main>
 
   <script src="scripts.js"></script>
 </body>
