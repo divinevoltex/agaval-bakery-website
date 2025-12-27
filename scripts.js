@@ -75,13 +75,27 @@
   /* ---------- ORDER PAGE ---------- */
   function fillOrderFromCart() {
     const ta = document.getElementById("order-items");
+    const form = document.getElementById("bakery-order-form");
     if (!ta) return;
 
     const cart = readCart();
+    
+    // Fill the text area with cart items
     ta.value = cart.length
       ? cart.map(i => `${i.qty} × ${i.name} — ₹${i.qty * i.price}`).join("\n")
       : "No items in cart";
+
+    // Clear cart when form is submitted
+    if(form) {
+      form.onsubmit = () => {
+        // We delay slightly so the form has time to grab the values
+        setTimeout(() => {
+          localStorage.removeItem(STORAGE_KEY);
+        }, 500);
+      };
+    }
   }
+
 
   /* ---------- ADD TO CART ---------- */
   function wireAddToCartButtons() {
